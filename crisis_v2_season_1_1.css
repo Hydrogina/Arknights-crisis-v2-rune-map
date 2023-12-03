@@ -1,0 +1,107 @@
+<style>
+    .node_r1 {
+        width: 60px;
+        height: 50px;
+        background-color: rgb(0, 0, 0);
+    }
+
+    .node_bag {
+        width: 60px;
+        height: 50px;
+        background-color: rgb(200, 200, 200);
+    }
+
+    .node_sp {
+        background-image: url(https://prts.wiki/images/8/87/Act38d1_icon.png);
+        background-repeat: no-repeat;
+        position: absolute;
+    }
+
+    .node_r2 {
+        width: 48px;
+        height: 16px;
+        font-size: 10px;
+        background-color: rgb(28, 30, 86);
+        color: rgb(255, 255, 255);
+        padding-left: 2px;
+    }
+
+    .node_r2_score {
+        display: flex;
+        justify-content: space-between;
+        width: 56px;
+        height: 16px;
+        font-size: 10px;
+        background-color: rgb(28, 30, 86);
+        color: rgb(255, 255, 255);
+        padding: 0 2px;
+    }
+
+    .node_r2_score .score_level {
+        width: 16px;
+        height: 16px;
+        fill: rgb(255, 0, 0);
+    }
+
+    .node_r1_ {
+        background-color: #85b7b0;
+        background-size: cover;
+    }
+
+    .node_r2_ {
+        height: 50px;
+        font-size: 14px;
+        background-color: rgb(62, 41, 41);
+        padding-left: 4px;
+    }
+
+    .node_r2_ .a {
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+    }
+
+    .node_r2_ .b {
+        font-size: 15px;
+        color: rgb(154, 154, 154);
+    }
+
+    .normal_warp {
+        position: relative;
+        left: -30px;
+        top: -30px;
+        line-height: 1.35;
+        cursor: pointer;
+    }
+
+    .normal_warp:hover .text_warp {
+        display: block;
+    }
+
+    .reward_warp {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        left: -15px;
+        top: -15px;
+        background-color: rgba(30, 255, 0, 0);
+        background-image: url(https://prts.wiki/images/e/ee/Icon_chest_avail.png);
+        background-size: cover;
+    }
+
+    .text_warp {
+        width: 200px;
+        display: none;
+        background-color: rgb(255, 250, 163);
+        position: absolute;
+        z-index: 2;
+    }
+
+    .node_large {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        left: -50px;
+        top: -50px;
+        background-color: rgb(245, 38, 38);
+    }
+</style>
