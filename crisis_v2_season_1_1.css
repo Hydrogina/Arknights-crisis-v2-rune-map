@@ -101,6 +101,19 @@
         filter: invert(1);
     }
 
+    .treasure_warp {
+        position: relative;
+        left: -30px;
+        top: -30px;
+        line-height: 1.35;
+        box-shadow: 0 0 6px 0px white;
+    }
+
+    .treasure_warp:hover .text_warp {
+        display: block;
+        filter: invert(1);
+    }
+
     .reward_warp {
         position: relative;
         width: 36px;

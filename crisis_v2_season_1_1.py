@@ -1,16 +1,28 @@
 import json
 import numpy as np
 import re
+import requests
+import pickle
 
 rune_size = [60, 50]
+img_cache = None
+
 GET_IMAGE = True
+USE_IMG_CACHE = True  # 使用图片url缓存，不用从prts查文件url
 ADD_CSS = False
 
-# mn = "crisis_v2_01-01"  # 维多利亚 灰烬泽地
+mn = "crisis_v2_01-01"  # 维多利亚 灰烬泽地
 # mn = "crisis_v2_01-02"  # 大炎 设防关隘
 # mn = "crisis_v2_01-03"  # 哥伦比亚 联邦监狱
-mn = "crisis_v2_01-05"  # 玻利瓦尔 翻修中沙滩
+# mn = "crisis_v2_01-05"  # 玻利瓦尔 翻修中沙滩
 # mn = "crisis_v2_01-07"  # 切尔诺伯格 13区废墟
+
+# 奖励图片，需要手动设置
+reward_imgs = {
+    "char_131_flameb@whirlwind#6": r'<div style="display: inline-block; position: relative; width: 120px; height: 120px;"><div><a href="https://prts.wiki/w/%E7%82%8E%E5%AE%A2" title="炎客"><img alt="Skin框.png" src="https://prts.wiki/images/thumb/0/05/Skin%E6%A1%86.png/120px-Skin%E6%A1%86.png" decoding="async" width="120" height="119" data-src="https://prts.wiki/images/thumb/0/05/Skin%E6%A1%86.png/120px-Skin%E6%A1%86.png" class=" lazyloaded" data-srcset="https://prts.wiki/images/0/05/Skin%E6%A1%86.png 1.5x" srcset="https://prts.wiki/images/0/05/Skin%E6%A1%86.png 1.5x"></a></div><div style="position: absolute; top: 21px; left: 26px;"><a href="https://prts.wiki/w/%E7%82%8E%E5%AE%A2" title="炎客"><img alt="头像 炎客 skin2.png" src="https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/67px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png" decoding="async" width="67" height="67" data-src="https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/67px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png" class=" lazyloaded" data-srcset="https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/101px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png 1.5x, https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/134px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png 2x" srcset="https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/101px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png 1.5x, https://prts.wiki/images/thumb/9/96/%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png/134px-%E5%A4%B4%E5%83%8F_%E7%82%8E%E5%AE%A2_skin2.png 2x"></a></div></div>',
+    "itempack_mod_4": r'<div style="display:inline-block;position:relative"><a href="https://prts.wiki/w/%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97" title="模组数据整合块"><img alt="道具 带框 模组数据整合块.png" src="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/120px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" decoding="async" width="120" height="120" data-src="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/120px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" class=" ls-is-cached lazyloaded" data-srcset="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/180px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x" srcset="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/180px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x"></a></div>',
+    "furni_contract2_s1_01": r'<div style="display:inline-block;position:relative"><span class="mc-tooltips"><span style="display:inline-block;"><span><a href="https://prts.wiki/w/浊燃之旗" title="浊燃之旗"><span style="display:inline-block;position:relative;"><img class=" ls-is-cached lazyloaded" data-src="https://prts.wiki/images/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png" style="min-width:0% !important;" width="120px" src="https://prts.wiki/images/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png"><img class=" ls-is-cached lazyloaded" data-src="https://prts.wiki/images/0/01/%E5%AE%B6%E5%85%B7_%E6%B5%8A%E7%87%83%E4%B9%8B%E6%97%97.png" style="position:absolute;left:8%;top:17.3%;width:84%;min-width:0% !important;" src="https://prts.wiki/images/0/01/%E5%AE%B6%E5%85%B7_%E6%B5%8A%E7%87%83%E4%B9%8B%E6%97%97.png"></span></a></span></span></span></div>',
+}
 
 
 def html_escape(s):
@@ -127,7 +139,7 @@ def node_bag(pos, score, name, des, img, si, size_bag):
     return s
 
 
-def node_large(pos, si, subti, ti, name, des, img):
+def node_treasure_default(pos, si, subti, ti, name, des):
     subti = html_escape(subti)
     ti = html_escape(ti)
 
@@ -150,10 +162,83 @@ def node_large(pos, si, subti, ti, name, des, img):
     return s
 
 
-import requests
+def node_treasure(pos, si, subti, ti, name, des, img=""):
+    subti = html_escape(subti)
+    ti = html_escape(ti)
+
+    s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
+        <div class="treasure_warp node_reward mc-tooltips" style="left:{int(-si / 2)}px;top:{int(-si / 2)}px;">
+            <div>
+                <div class="node_r1_" style="width:{int(si)}px;height:{int(si)}px;">{img}</div>
+                <div class="node_r2_" style="width:{int(si - 4)}px;">
+                    <div class="a">{ti}</div>
+                    <div class="b">{subti}</div>
+                </div>
+            </div>
+            <div style="display:none" data-size="350" data-trigger="mouseenter focus">
+                <div class="a" style="color:#d32f2f;"><b>晶块陈列室：{name}</b></div>
+                <div class="b">{des}</div>
+            </div>
+        </div>
+    </div>
+    """
+    return s
 
 
-def get_img(img):
+def pickle_write(path, data):
+    with open(path, "wb") as f:
+        pickle.dump(data, f)
+    return True
+
+
+def pickle_read(path):
+    with open(path, "rb") as f:
+        data = pickle.load(f)
+    return data
+
+
+def save_img_cache():
+    global img_cache
+    path = "img_cache.pickle"
+    if img_cache is None:
+        img_cache = {}
+    pickle_write(path, img_cache)
+    return img_cache
+
+
+def load_img_cache():
+    global img_cache
+    path = "img_cache.pickle"
+    try:
+        img_cache = pickle_read(path)
+    except Exception as e:
+        print(e)
+        save_img_cache()
+    return img_cache
+
+
+def save_img_to_cache(img, format="png", data={}):
+    global img_cache
+    if img_cache is None:
+        load_img_cache()
+
+    img_cache[f"{img}.{format}"] = data
+    save_img_cache()
+
+    return img_cache
+
+
+def get_img_from_cache(img, format="png"):
+    global img_cache
+    if img_cache is None:
+        load_img_cache()
+
+    rtn = img_cache.get(f"{img}.{format}")
+
+    return rtn
+
+
+def get_img_from_prts(img, format="png"):
     S = requests.Session()
 
     URL = "https://prts.wiki/api.php"
@@ -161,7 +246,7 @@ def get_img(img):
     PARAMS = {
         "action": "query",
         "format": "json",
-        "titles": f"File:{img}.png",
+        "titles": f"File:{img}.{format}",
         "prop": "imageinfo",
         "iiprop": "url|size",
     }
@@ -182,6 +267,21 @@ def get_img(img):
     rtn = {"url": url, "width": width, "height": height}
 
     return rtn
+
+
+def get_img(img, format="png"):
+    if USE_IMG_CACHE:
+        rtn = get_img_from_cache(img, format)
+        if rtn is not None:
+            print("cache", rtn)
+            return rtn
+
+    rtn = get_img_from_prts(img, format)
+    save_img_to_cache(img, format, data=rtn)
+    print("prts", rtn)
+
+    return rtn
+
 
 # 关键节点
 def node_reward(pos, name, des):
@@ -237,7 +337,7 @@ def decode_description(runeData):
 
     print(description)
 
-    description = description.replace(r"<@crisisv2.nag>", "")
+    # description = description.replace(r"<@crisisv2.nag>", "")
     description = description.replace(r"</>", "")
     description = re.sub(r"<@.*?>", "", description)
     blocks, keys = get_description_keys(description)
@@ -251,16 +351,17 @@ def decode_description(runeData):
         block = blocks[i]
         num = nums[i]
 
-        # print('block ',block)
-        # print('num ',num)
         if block[1] == "-":
             num = -num
-            # print('num ',num)
 
         if r"%" in block:
             num = num * 100
             num = round(num, 5)
-            num = re.sub(r"\.0+$", "", str(num))
+            num = str(num)
+            if "." in num:
+                num = re.sub(r"0+$", "", num)
+            if num[-1] == ".":
+                num = num[:-1]
             num = num + "%"
 
         nums[i] = num
@@ -334,7 +435,7 @@ for bag, bag_item in bagDataMap.items():
     url = "https://prts.wiki/images/2/2c/G_enemy_atk_2.png"
     si = [50, 46]
     if GET_IMAGE:
-        img = get_img("cc_battleplan_dim_%d"%(dimension if rewardScore>0 else -1))
+        img = get_img("cc_battleplan_dim_%d" % (dimension if rewardScore > 0 else -1))
         url = img["url"]
         si = [img["width"], img["height"]]
     # icon=f'评分图标_{slotPackName}'
@@ -393,13 +494,21 @@ for node, node_item in nodeDataMap.items():
         reward = rewards["reward"]["id"]
         requestBagCnt = str(rewards["requestBagCnt"])
 
-        url = "https://prts.wiki/images/2/2c/G_enemy_atk_2.png"
-        si = [50, 46]
+        print("!!!---------------------------")
+        print(reward)
+
+        img = reward_imgs.get(reward)
 
         subti = f"{requestBagCnt}/{requestBagCnt} 已领取"
-        domstr += node_large(pos, 120, subti, "REWARDS", previewTitle, previewDesc, url)
+        if img is not None:
+            domstr += node_treasure(
+                pos, 120, subti, "REWARDS", previewTitle, previewDesc, img
+            )
+        else:
+            domstr += node_treasure_default(
+                pos, 120, subti, "REWARDS", previewTitle, previewDesc
+            )
 
-        # domstr += node_normal2(pos, score, runeName, description, url,si)
     else:
         print("------------------------")
         domstr += node_normal2(
