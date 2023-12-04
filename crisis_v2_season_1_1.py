@@ -6,10 +6,10 @@ rune_size = [60, 50]
 GET_IMAGE = True
 ADD_CSS = False
 
-mn = "crisis_v2_01-01"  # 维多利亚 灰烬泽地
+# mn = "crisis_v2_01-01"  # 维多利亚 灰烬泽地
 # mn = "crisis_v2_01-02"  # 大炎 设防关隘
 # mn = "crisis_v2_01-03"  # 哥伦比亚 联邦监狱
-# mn = "crisis_v2_01-05"  # 玻利瓦尔 翻修中沙滩
+mn = "crisis_v2_01-05"  # 玻利瓦尔 翻修中沙滩
 # mn = "crisis_v2_01-07"  # 切尔诺伯格 13区废墟
 
 
@@ -82,18 +82,18 @@ def node_normal2(pos, score, name, des, img, si):
 
     s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
             <div class="normal_warp">
-                <div class="node_r1">
+                <div class="node_r1 mc-tooltips">
                     <div class="node_sp"
                     style="width:{si[0]}px;height:{si[1]}px;left:{int((rune_size[0] - si[0]) / 2)}px;top:{int((rune_size[1] - si[1]) / 2)}px;background-image:url({img});">
+                    </div>
+                    <div style="display:none" data-size="350" data-trigger="mouseenter focus">
+                        <div class="a" style="color:#d32f2f;"><b>{name}</b></div>
+                        <div class="b">{des}</div>
                     </div>
                 </div>
                 <div class="node_r2_score"><svg>
                         <polygon class="score_level" points="8,3 3,13 13,13"></polygon>
                     </svg>{score}</div>
-                <div class="text_warp">
-                    <div class="a">{name}</div>
-                    <div class="b">{des}</div>
-                </div>
             </div>
         </div>"""
 
@@ -106,18 +106,21 @@ def node_bag(pos, score, name, des, img, si, size_bag):
 
     s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
             <div class="normal_warp">
-                <div class="node_bag" style="width:{size_bag['x']}px">
-                    <div class="node_sp"
-                    style="width:{si[0]}px;height:{si[1]}px;left:{int((rune_size[0] - si[0]) / 2)}px;top:{int((rune_size[1] - si[1]) / 2)}px;background-image:url({img});">
+                <div class="node_bag mc-tooltips" style="width:{size_bag['x']}px">
+                    <div style="height: 100%;">
+                        <div class="node_sp"
+                        style="width:{si[0]}px;height:{si[1]}px;left:{int((rune_size[0] - si[0]) / 2)}px;top:{int((rune_size[1] - si[1]) / 2)}px;background-image:url({img});">
+                        </div>
+                        <div class="bag_name">{name.replace("指标集：", "")}</div>
+                    </div>
+                    <div style="display:none" data-size="350" data-trigger="mouseenter focus">
+                        <div class="a" style="color:#d32f2f;"><b>{name}</b></div>
+                        <div class="b">{des}</div>
                     </div>
                 </div>
-                <div class="node_r2_score"><svg>
+                <div class="node_r2_score" style="width: 100%; padding-right: 0; justify-content: unset;"><svg style="width: 40px;">
                         <polygon class="score_level" points="8,3 3,13 13,13"></polygon>
                     </svg>{score}</div>
-                <div class="text_warp">
-                    <div class="a">{name}</div>
-                    <div class="b">{des}</div>
-                </div>
             </div>
         </div>"""
 
@@ -128,19 +131,22 @@ def node_large(pos, si, subti, ti, name, des, img):
     subti = html_escape(subti)
     ti = html_escape(ti)
 
-    s = f'<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">'
-    s += (
-        f'<div class="normal_warp" style="left:{int(-si / 2)}px;top:{int(-si / 2)}px;">'
-    )
-    s += f'<div class="node_r1_" style="width:{int(si)}px;height:{int(si)}px;background-image:url({img});"></div>'
-    s += f'<div class="node_r2_" style="width:{int(si - 4)}px;">'
-    s += f'<div class="a">{ti}</div>'
-    s += f'<div class="b">{subti}</div>'
-    s += "</div>"
-    s += '<div class="text_warp">'
-    s += f'<div class="a">{name}</div>'
-    s += f'<div class="b">{des}</div>'
-    s += "</div></div></div>\n"
+    s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
+        <div class="normal_warp node_reward mc-tooltips" style="left:{int(-si / 2)}px;top:{int(-si / 2)}px;">
+            <div>
+                <div class="node_r1_ mdi mdi-hexagon-slice-2 mdi-rotate-180" style="color: black;text-shadow: 0 0 6px #ffffffba;font-size: 110px;text-align: center;"></div>
+                <div class="node_r2_" style="width:{int(si - 4)}px;">
+                    <div class="a">{ti}</div>
+                    <div class="b">{subti}</div>
+                </div>
+            </div>
+            <div style="display:none" data-size="350" data-trigger="mouseenter focus">
+                <div class="a" style="color:#d32f2f;"><b>晶块陈列室：{name}</b></div>
+                <div class="b">{des}</div>
+            </div>
+        </div>
+    </div>
+    """
     return s
 
 
@@ -177,12 +183,18 @@ def get_img(img):
 
     return rtn
 
-
-def node_reward(pos):
-    s = f'<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">'
-    s += '<div class="reward_warp">'
-    s += "</div>"
-    s += "</div>\n"
+# 关键节点
+def node_reward(pos, name, des):
+    s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
+            <div class="reward_warp mc-tooltips">
+                <div style="height: 100%;"></div>
+                <div style="display:none" data-size="350" data-trigger="mouseenter focus">
+                    <div class="a" style="color:#d32f2f;"><b>阵眼任务：{name}</b></div>
+                    <div class="b">{des}</div>
+                </div>
+            </div>
+        </div>
+    """
     return s
 
 
@@ -275,6 +287,7 @@ runeDataMap = mapDetailDataMap[mn]["runeDataMap"]
 # roadRelationDataMap=mapDetailDataMap[mn]['roadRelationDataMap']
 bagDataMap = mapDetailDataMap[mn]["bagDataMap"]
 rewardNodeDataMap = mapDetailDataMap[mn]["rewardNodeDataMap"]
+challengeNodeDataMap = mapDetailDataMap[mn]["challengeNodeDataMap"]
 
 nodePosMap = nodeViewData["nodePosMap"]
 roadPosMap = nodeViewData["roadPosMap"]
@@ -315,10 +328,15 @@ for bag, bag_item in bagDataMap.items():
     slotPackFullName = bag_item["slotPackFullName"]
     slotPackName = bag_item["slotPackName"]
     rewardScore = bag_item["rewardScore"]
+    dimension = bag_item["dimension"]
     previewTitle = bag_item["previewTitle"]
 
     url = "https://prts.wiki/images/2/2c/G_enemy_atk_2.png"
     si = [50, 46]
+    if GET_IMAGE:
+        img = get_img("cc_battleplan_dim_%d"%(dimension if rewardScore>0 else -1))
+        url = img["url"]
+        si = [img["width"], img["height"]]
     # icon=f'评分图标_{slotPackName}'
     # print(icon)
     # img=get_img(icon)
@@ -364,7 +382,10 @@ for node, node_item in nodeDataMap.items():
     elif nodeType == "START":
         svgstr += plot_svg([pos])
     elif nodeType == "KEYPOINT":
-        domstr += node_reward(pos)
+        keypointData = challengeNodeDataMap[node]
+        challengeName = keypointData["previewTitle"]
+        description = keypointData["previewDesc"]
+        domstr += node_reward(pos, challengeName, description)
     elif nodeType == "TREASURE":
         rewards = rewardNodeDataMap[node]
         previewTitle = rewards["previewTitle"]

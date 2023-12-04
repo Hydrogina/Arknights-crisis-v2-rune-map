@@ -4,11 +4,28 @@
         height: 50px;
         background-color: rgb(0, 0, 0);
     }
+    
+    .node_r1:hover {
+        filter:invert(1);
+        background:#D32F2F;
+    }
 
     .node_bag {
         width: 60px;
         height: 50px;
-        background-color: rgb(200, 200, 200);
+        background-color: rgb(80 80 80);
+    }
+    
+    .node_bag:hover {
+        background: #d32f2f;
+        filter: invert(1);
+    }
+    
+    .bag_name {
+        color: white;
+        left: 57px;
+        top: 16px;
+        position: absolute;
     }
 
     .node_sp {
@@ -32,9 +49,10 @@
         width: 56px;
         height: 16px;
         font-size: 10px;
-        background-color: rgb(28, 30, 86);
+        background-color: rgb(72 72 72);
         color: rgb(255, 255, 255);
         padding: 0 2px;
+        filter: invert(1);
     }
 
     .node_r2_score .score_level {
@@ -44,8 +62,12 @@
     }
 
     .node_r1_ {
-        background-color: #85b7b0;
+        background-color: #e04a4e;
         background-size: cover;
+    }
+    
+    .node_reward:hover {
+        box-shadow: 0 0 5px 3px #ff8a8d;
     }
 
     .node_r2_ {
@@ -70,24 +92,31 @@
         left: -30px;
         top: -30px;
         line-height: 1.35;
-        cursor: pointer;
+        filter: invert(1);
+        box-shadow: 0 0 6px 0px white;
     }
 
     .normal_warp:hover .text_warp {
         display: block;
+        filter: invert(1);
     }
 
     .reward_warp {
         position: relative;
-        width: 30px;
-        height: 30px;
-        left: -15px;
-        top: -15px;
+        width: 36px;
+        height: 36px;
+        left: -18px;
+        top: -18px;
         background-color: rgba(30, 255, 0, 0);
-        background-image: url(https://prts.wiki/images/e/ee/Icon_chest_avail.png);
+        background-image: url(https://prts.wiki/images/c/c6/Cc_battleplan_task.png);
         background-size: cover;
+        filter: drop-shadow(0 0 3px #484848);
     }
 
+    .reward_warp:hover {
+        filter: drop-shadow(0 0 3px #d12f2f) drop-shadow(0 0 8px #d12f2f);
+    }
+    
     .text_warp {
         width: 200px;
         display: none;
