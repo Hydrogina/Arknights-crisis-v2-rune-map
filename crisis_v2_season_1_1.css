@@ -4,10 +4,10 @@
         height: 50px;
         background-color: rgb(0, 0, 0);
     }
-    
+
     .node_r1:hover {
-        filter:invert(1);
-        background:#D32F2F;
+        filter: invert(1);
+        background: #D32F2F;
     }
 
     .node_bag {
@@ -15,12 +15,12 @@
         height: 50px;
         background-color: rgb(80 80 80);
     }
-    
+
     .node_bag:hover {
         background: #d32f2f;
         filter: invert(1);
     }
-    
+
     .bag_name {
         color: white;
         left: 57px;
@@ -62,12 +62,12 @@
     }
 
     .node_r1_ {
-        background-color: #e04a4e;
+        background-color: #1fb5b1;
         background-size: cover;
     }
-    
+
     .node_reward:hover {
-        box-shadow: 0 0 5px 3px #ff8a8d;
+        box-shadow: 0 0 6px 4px #007572ba;
     }
 
     .node_r2_ {
@@ -75,6 +75,7 @@
         font-size: 14px;
         background-color: rgb(62, 41, 41);
         padding-left: 4px;
+        filter: invert(1);
     }
 
     .node_r2_ .a {
@@ -106,7 +107,7 @@
         left: -30px;
         top: -30px;
         line-height: 1.35;
-        box-shadow: 0 0 6px 0px white;
+        box-shadow: 0 0 6px 0px black;
     }
 
     .treasure_warp:hover .text_warp {
@@ -129,7 +130,7 @@
     .reward_warp:hover {
         filter: drop-shadow(0 0 3px #d12f2f) drop-shadow(0 0 8px #d12f2f);
     }
-    
+
     .text_warp {
         width: 200px;
         display: none;
