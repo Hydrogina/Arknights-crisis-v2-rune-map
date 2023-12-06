@@ -1,0 +1,150 @@
+<style>
+    .node_r1 {
+        width: 60px;
+        height: 50px;
+        background-color: rgb(0, 0, 0);
+    }
+
+    .node_r1:hover {
+        filter: invert(1);
+        background: #D32F2F;
+    }
+
+    .node_bag {
+        width: 60px;
+        height: 50px;
+        background-color: rgb(80 80 80);
+    }
+
+    .node_bag:hover {
+        background: #d32f2f;
+        filter: invert(1);
+    }
+
+    .bag_name {
+        color: white;
+        left: 57px;
+        top: 16px;
+        position: absolute;
+    }
+
+    .node_sp {
+        background-image: url(https://prts.wiki/images/8/87/Act38d1_icon.png);
+        background-repeat: no-repeat;
+        position: absolute;
+    }
+
+    .node_r2 {
+        width: 48px;
+        height: 16px;
+        font-size: 10px;
+        background-color: rgb(28, 30, 86);
+        color: rgb(255, 255, 255);
+        padding-left: 2px;
+    }
+
+    .node_r2_score {
+        display: flex;
+        justify-content: space-between;
+        width: 56px;
+        height: 16px;
+        font-size: 10px;
+        background-color: rgb(72 72 72);
+        color: rgb(255, 255, 255);
+        padding: 0 2px;
+        filter: invert(1);
+    }
+
+    .node_r2_score .score_level {
+        width: 16px;
+        height: 16px;
+        fill: rgb(255, 0, 0);
+    }
+
+    .node_r1_ {
+        background-color: #1fb5b1;
+        background-size: cover;
+    }
+
+    .node_reward:hover {
+        box-shadow: 0 0 6px 4px #007572ba;
+    }
+
+    .node_r2_ {
+        height: 50px;
+        font-size: 14px;
+        background-color: rgb(62, 41, 41);
+        padding-left: 4px;
+        filter: invert(1);
+    }
+
+    .node_r2_ .a {
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+    }
+
+    .node_r2_ .b {
+        font-size: 15px;
+        color: rgb(154, 154, 154);
+    }
+
+    .normal_warp {
+        position: relative;
+        left: -30px;
+        top: -30px;
+        line-height: 1.35;
+        filter: invert(1);
+        box-shadow: 0 0 6px 0px white;
+    }
+
+    .normal_warp:hover .text_warp {
+        display: block;
+        filter: invert(1);
+    }
+
+    .treasure_warp {
+        position: relative;
+        left: -30px;
+        top: -30px;
+        line-height: 1.35;
+        box-shadow: 0 0 6px 0px black;
+    }
+
+    .treasure_warp:hover .text_warp {
+        display: block;
+        filter: invert(1);
+    }
+
+    .reward_warp {
+        position: relative;
+        width: 36px;
+        height: 36px;
+        left: -18px;
+        top: -18px;
+        background-color: rgba(30, 255, 0, 0);
+        background-image: url(https://prts.wiki/images/c/c6/Cc_battleplan_task.png);
+        background-size: cover;
+        filter: drop-shadow(0 0 3px #484848);
+    }
+
+    .reward_warp:hover {
+        filter: drop-shadow(0 0 3px #d12f2f) drop-shadow(0 0 8px #d12f2f);
+    }
+
+    .text_warp {
+        width: 200px;
+        display: none;
+        background-color: rgb(255, 250, 163);
+        position: absolute;
+        z-index: 2;
+    }
+
+    .node_large {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        left: -50px;
+        top: -50px;
+        background-color: rgb(245, 38, 38);
+    }
+</style>

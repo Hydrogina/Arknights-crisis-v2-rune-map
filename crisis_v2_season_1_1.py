@@ -526,7 +526,7 @@ h = nodeViewData["height"]
 print(w, h)
 allstr = ""
 if ADD_CSS:
-    allstr += f'{fileread("crisis_v2_season_1_1.css")}'  # CSS
+    allstr += f'{fileread("crisis_v2_season_1_1_css.html")}'  # CSS
 allstr += f"<style>.act38_map_main{{width:{int(w)}px;height:{int(h)}px;}}.skin-minerva .act38_map_main{{width:{int(w/4)}px;height:{int(h/4)}px;transform-origin: left top;transform:scale(0.25);}}</style>\n"
 allstr += f'<div class="act38_map_main"><div style="position:absolute;"><svg width="{int(w)}px" height="{int(h)}px">\n'
 allstr = allstr + svgstr
