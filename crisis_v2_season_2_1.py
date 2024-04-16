@@ -11,17 +11,17 @@ GET_IMAGE = True
 USE_IMG_CACHE = True  # 使用图片url缓存，不用从prts查文件url
 ADD_CSS = False
 
-mn = "crisis_v2_02-01"  # 伊比利亚 不朽厅堂
+# mn = "crisis_v2_02-01"  # 伊比利亚 不朽厅堂
 # mn = "crisis_v2_02-02"  # 莱塔尼亚 月落环巷
 # mn = "crisis_v2_02-03"  # 维多利亚 枯苇泥淖
 # mn = "crisis_v2_01-02_b"  # 大炎 设防关隘
-# mn = "crisis_v2_01-04_b"  # 哥伦比亚 实验基地封锁区
+mn = "crisis_v2_01-04_b"  # 哥伦比亚 实验基地封锁区
 
 # 奖励图片，需要手动设置
 reward_imgs = {
-    "char_192_falco@marthe#6": r'<div style="display: inline-block; position: relative; width: 120px; height: 120px;"><div><a href="https://prts.wiki/w/%E7%BF%8E%E7%BE%BD" title="翎羽"><img alt="Skin框.png" src="https://prts.wiki/images/thumb/0/05/Skin%E6%A1%86.png/120px-Skin%E6%A1%86.png" decoding="async" width="120" height="119" data-src="https://prts.wiki/images/thumb/0/05/Skin%E6%A1%86.png/120px-Skin%E6%A1%86.png" class=" lazyloaded" data-srcset="https://prts.wiki/images/0/05/Skin%E6%A1%86.png 1.5x" srcset="https://prts.wiki/images/0/05/Skin%E6%A1%86.png 1.5x"></a></div><div style="position: absolute; top: 21px; left: 26px;"><a href="https://prts.wiki/w/%E7%BF%8E%E7%BE%BD" title="翎羽"><img alt="头像 翎羽 skin1.png" src="https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/67px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png" decoding="async" width="67" height="67" data-src="https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/67px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png" class=" lazyloaded" data-srcset="https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/101px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 1.5x, https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/134px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 2x" srcset="https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/101px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 1.5x, https://prts.wiki/images/thumb/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png/134px-%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 2x"></a></div></div>',
-    "itempack_mod_4": r'<div style="display:inline-block;position:relative"><a href="https://prts.wiki/w/%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97" title="模组数据整合块"><img alt="道具 带框 模组数据整合块.png" src="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/120px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" decoding="async" width="120" height="120" data-src="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/120px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" class=" ls-is-cached lazyloaded" data-srcset="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/180px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x" srcset="https://prts.wiki/images/thumb/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png/180px-%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x"></a></div>',
-    "furni_contract2_s2_01": r'<div style="display:inline-block;position:relative"><span class="mc-tooltips"><span style="display:inline-block;"><span><a href="https://prts.wiki/w/潮曦之旗" title="潮曦之旗"><span style="display:inline-block;position:relative;"><img class=" ls-is-cached lazyloaded" data-src="https://prts.wiki/images/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png" style="min-width:0% !important;" width="120px" src="https://prts.wiki/images/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png"><img class=" ls-is-cached lazyloaded" data-src="https://torappu.prts.wiki/assets/furniture/furni_contract2_s2_01.png" style="position:absolute;left:8%;top:17.3%;width:84%;min-width:0% !important;" src="https://torappu.prts.wiki/assets/furniture/furni_contract2_s2_01.png"></span></a></span></span></span></div>',
+    "char_192_falco@marthe#6": r'<div style="display: inline-block; position: relative; width: 120px; height: 120px;"><div><a href="https://prts.wiki/w/%E7%BF%8E%E7%BE%BD" title="翎羽"><img alt="Skin框.png" src="https://media.prts.wiki/0/05/Skin%E6%A1%86.png" decoding="async" width="120" height="119" data-src="https://media.prts.wiki/0/05/Skin%E6%A1%86.png" class=" lazyloaded" data-srcset="https://media.prts.wiki/0/05/Skin%E6%A1%86.png 1.5x" srcset="https://media.prts.wiki/0/05/Skin%E6%A1%86.png 1.5x"></a></div><div style="position: absolute; top: 21px; left: 26px;"><a href="https://prts.wiki/w/%E7%BF%8E%E7%BE%BD" title="翎羽"><img alt="头像 翎羽 skin1.png" src="https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png" decoding="async" width="67" height="67" data-src="https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png" class=" lazyloaded" data-srcset="https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 1.5x, https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 2x" srcset="https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 1.5x, https://media.prts.wiki/1/1c/%E5%A4%B4%E5%83%8F_%E7%BF%8E%E7%BE%BD_skin1.png 2x"></a></div></div>',
+    "itempack_mod_4": r'<div style="display:inline-block;position:relative"><a href="https://prts.wiki/w/%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97" title="模组数据整合块"><img alt="道具 带框 模组数据整合块.png" src="https://media.prts.wiki/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" decoding="async" width="120" height="120" data-src="https://media.prts.wiki/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png" class=" ls-is-cached lazyloaded" data-srcset="https://media.prts.wiki/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x" srcset="https://media.prts.wiki/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 1.5x, /images/e/e4/%E9%81%93%E5%85%B7_%E5%B8%A6%E6%A1%86_%E6%A8%A1%E7%BB%84%E6%95%B0%E6%8D%AE%E6%95%B4%E5%90%88%E5%9D%97.png 2x"></a></div>',
+    "furni_contract2_s2_01": r'<div style="display:inline-block;position:relative"><span class="mc-tooltips"><span style="display:inline-block;"><span><a href="https://prts.wiki/w/潮曦之旗" title="潮曦之旗"><span style="display:inline-block;position:relative;"><img class=" ls-is-cached lazyloaded" data-src="https://media.prts.wiki/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png" style="min-width:0% !important;" width="120px" src="https://media.prts.wiki/3/3a/%E5%AE%B6%E5%85%B7_%E8%83%8C%E6%99%AF_R2.png"><img class=" ls-is-cached lazyloaded" data-src="https://torappu.prts.wiki/assets/furniture/furni_contract2_s2_01.png" style="position:absolute;left:8%;top:17.3%;width:84%;min-width:0% !important;" src="https://torappu.prts.wiki/assets/furniture/furni_contract2_s2_01.png"></span></a></span></span></span></div>',
 }
 
 
@@ -110,7 +110,8 @@ def node_normal2(pos, score, name, des, img, si):
         </div>"""
 
     return s
-    
+
+# 空的指标
 def node_normal2_unk(pos, si):
     s = f"""<div style="position:absolute;left:{int(pos[0])}px;top:{int(-pos[1])}px;">
             <div class="normal_warp node_unknown">
@@ -278,7 +279,7 @@ def get_img_from_prts(img, format="png"):
     print("--------")
     pages = DATA["query"]["pages"]
     for id, page in pages.items():
-        url = page["imageinfo"][0]["url"]
+        url = page["imageinfo"][0]["url"] #???
         width = page["imageinfo"][0]["width"]
         height = page["imageinfo"][0]["height"]
 
@@ -452,7 +453,7 @@ for bag, bag_item in bagDataMap.items():
     dimension = bag_item["dimension"]
     previewTitle = bag_item["previewTitle"]
 
-    url = "https://prts.wiki/images/2/2c/G_enemy_atk_2.png"
+    url = "https://media.prts.wiki/2/2c/G_enemy_atk_2.png"
     si = [50, 46]
     if GET_IMAGE:
         img = get_img("cc_battleplan_dim_%d" % (dimension if rewardScore > 0 else -1))
@@ -493,7 +494,7 @@ for node, node_item in nodeDataMap.items():
             print(runeName, score, runeIcon)
             print(description)
 
-            url = "https://prts.wiki/images/2/2c/G_enemy_atk_2.png"
+            url = "https://media.prts.wiki/2/2c/G_enemy_atk_2.png"
             si = [50, 46]
             if GET_IMAGE:
                 img = get_img(runeIcon)
@@ -540,7 +541,7 @@ for node, node_item in nodeDataMap.items():
             node,
             node,
             "description",
-            "https://prts.wiki/images/d/d6/G_enemy_hp_1.png",
+            "https://media.prts.wiki/d/d6/G_enemy_hp_1.png",
             [46, 46],
         )
 
